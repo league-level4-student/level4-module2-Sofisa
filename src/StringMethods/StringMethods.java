@@ -45,9 +45,9 @@ public class StringMethods {
 	// if String s contains the word "underscores", change all of the spaces to underscores
 	public static String formatSpaces(String s) {
 		if (s.contains("underscores")) {
-			s.replace(" ", "_");
+			s = s.replace(" ", "_");
 		}
-		return null;
+		return s;
 	}
 
 	
@@ -55,23 +55,82 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
+		
+		
+	
+		
+		String s1trim = s1.trim();
+		System.out.println(s1trim);
+		String s2trim  = s2.trim();
+		System.out.println(s2trim);
+		String s3trim = s3.trim();
+		System.out.println(s3trim);
+	
+		
+		String[] array1 = s1trim.split(" ");
+		System.out.println(array1[0]);
+		System.out.println(array1[1]);
+		
+		String[] array2 = s2trim.split(" ");
+		System.out.println(array2[0]);
+		System.out.println(array2[1]);
+		String[] array3 = s3trim.split(" ");
+		System.out.println(array3[0]);
+		System.out.println(array3[1]);
+		
+		if (array1[1].compareTo(array2[1]) <= 0) {
+			//return array1[0];
+			return s1trim;
+		}else if (array2[1].compareTo(array3[1]) <=0) {
+			//return array2[0];
+			return s2trim;
+		}else if (array2[1].compareTo(array3[1]) >=0) {
+			//return array3[0];
+			return s3trim;
+		}else if (array1[1].compareTo(array2[1]) >= 0) {
+			return s2trim;
+			//return array2[0];
+		}else if (array1[1].compareTo(array3[1]) >= 0) {
+			//return array3[0];
+			return s3trim;
+		}else if (array1[1].compareTo(array3[1])<= 0) {
+			//return array1[1];
+			return s1trim;
+		}
+		
 		return null;
 	}
 	
 	
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		String nums = s.replaceAll("[a-zA-Z]", "");
+		int sum = 0;
+		System.out.println(nums);
+		
+		//String[] array = nums.split(" ");
+		for (int i = 0; i < nums.length(); i++) {
+			sum += nums.charAt(i) - '0';
+			
+		}
+		//Character.isDigit();
+		return sum;
 	}
 	
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int contains = 0;
+		if (s.contains(substring) == true) {
+			contains++;
+		}
+		return contains;
 	}
+
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
+		//Utilities.encrypt(s.getBytes(), key);
 		return null;
 	}
 
