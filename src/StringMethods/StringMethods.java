@@ -120,9 +120,11 @@ public class StringMethods {
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		int contains = 0;
-		if (s.contains(substring) == true) {
+		int contains =0;
+		int start = 0;
+		while (s.indexOf(substring,start) >=0) {
 			contains++;
+			start = s.indexOf(substring, start)+1;
 		}
 		return contains;
 	}
@@ -130,20 +132,29 @@ public class StringMethods {
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		//Utilities.encrypt(s.getBytes(), key);
-		return null;
+		return Utilities.encrypt(s.getBytes(), (byte)key);
+		
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		return Utilities.decrypt(s, (byte)key);
+		
 	}
 
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		String[] array1 = s.split(" ");
+		int contains = 0;
+		for (int i = 0; i < array1.length; i++) {
+			if (array1[i].endsWith(substring)) {
+				contains++;
+			}
+		}
+		return contains;
+		
 	}
 	
 
@@ -151,7 +162,9 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int characterCount = s.lastIndexOf(substring) - (s.indexOf(substring) + substring.length());
+	
+		return characterCount;
 	}
 
 
@@ -159,10 +172,36 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
+		String strim = s.trim();
+		strim = strim.replace(" ", "");
+		strim = strim.replace(",", "");
+		strim = strim.replace("-", "");
+		strim = strim.replace("?", "");
+		strim = strim.replace(".", "");
+		strim = strim.toLowerCase();
+		
+		char[] ch = strim.toCharArray();
+		int count =0;
+		for(int i=0; i< ch.length/2; i++) {
+		if(ch[i] == ch[ ch.length-1-i]){
+
+		count++;
+		continue;
+
+		}
+		}
+
+		if(count >0) {
 		return true;
+		}
+
+	
+return false;
 	}
 	
-}
+	}
+	
+
 
 class Utilities {
 	// This basic encryption scheme is called single-byte xor. It takes a single
