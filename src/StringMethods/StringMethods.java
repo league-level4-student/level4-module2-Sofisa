@@ -184,7 +184,7 @@ public class StringMethods {
 		int count =0;
 		for(int i=0; i< ch.length/2; i++) {
 		if(ch[i] == ch[ ch.length-1-i]){
-
+		
 		count++;
 		continue;
 
